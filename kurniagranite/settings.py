@@ -25,7 +25,7 @@ SECRET_KEY = 'o*h=2d8&m)w%=%5_!-xb-qhlfwi0(f%ohhm1@9nxt(q&i!fja9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://kurniagranite-psql-kurniagranite.193b.starter-ca-central-1.openshiftapps.com']
 
 
 # Application definition

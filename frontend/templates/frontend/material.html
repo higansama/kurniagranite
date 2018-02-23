@@ -1,0 +1,24 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block konten %}   
+<h1 class="center-align teal-text flow-text center-align" style="font-size:500%;">Material</h1>    
+    <div class="row">
+        {% for i in material %}
+        {% if i.is_active == '1' %}
+        
+        <div class="col l3 m3 s10 push-s1" >
+            <center>
+                <label for="{{ i.slug }}">
+                  <a href="{% url 'frontend:detailmaterial' i.slug %}">
+                      <font color="#827717">{{ i.namamaterial }}</font>
+                  </a>
+                </label>
+            </center>
+            <img id="{{i.slug}}" class="materialboxed responsive-img lite-product jarakbawah" data-caption="{{i.deskripsi|safe}} " src="../media/{{i.gambar1}}">
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  
+{% endblock konten %}

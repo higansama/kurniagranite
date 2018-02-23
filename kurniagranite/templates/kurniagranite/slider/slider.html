@@ -1,0 +1,114 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<H3>{{ title }}</H3>
+<p align="right">
+<a class="btn btn-app" href="{% url 'slidertambah' %}">
+    <i class="fa fa-plus-square-o"></i>
+        Tambah Data
+    </a>
+</p>
+
+
+
+<div class="x_panel">
+        <div class="x_title">
+          <h2>Data Slider</h2>
+          <ul class="nav navbar-right panel_toolbox">
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="dashboard-widget-content">
+    
+            <ul class="list-unstyled timeline widget">
+             {% for i in slider %}
+             <li>
+                    <div class="block">
+                      <div class="block_content">
+                        <h2 class="title">
+                                          
+                                      </h2>
+                        <div class="byline">
+                          <span>{{ i.date_created }} </span><a>
+                              <br>
+                              <strong>
+                                  Created By: {{ i.created_by }}
+                              </strong>
+                          </a>
+                        </div>
+                        <p class="excerpt">
+                            <div class="container">
+                                <div class="col-md-2 col-l-2 col-s-2">
+                                    <img src="../../media/{{ i.gambar }}" alt="" width="100%" height="100%">
+                                </div>
+                            </div>
+                            <br>
+                            <h4><strong>{{ i.judul }}</strong></h4>
+                            <br>
+                             {{ i.link|safe|slice:":255"  }}<a></a> 
+                       
+                        <br>
+                        <br>
+                        <a class="btn btn-app" href="ubah/{{ i.slug }}">
+                            <i class="fa fa-edit" style="color:aqua"></i>
+                            Edit Data
+                        </a>
+                                &nbsp;
+                        {% if i.is_active == "1" %}
+                        <a class="btn btn-app" href="../slider/aktifasi/{{ i.slug }}/{{ i.is_active }}">                                                                                                
+                            <i class="fa fa-check-square-o" style="color:aqua"></i>
+                            Aktif
+                        </a>
+                        {% else %}
+                        <a class="btn btn-app" href="../slider/aktifasi/{{ i.slug }}/{{ i.is_active }}">                                                                        
+                            <i class="fa fa-square"></i>
+                            Tidak Aktif
+                        </a>
+                        {% endif %}
+                        <a href="{% url 'hapuslider' i.slug %}" class="btn btn-app"> 
+                            <i class="fa fa-minus-square-o" style="color:brown"></i>
+                            Hapus
+                        </a>
+                            </p>
+                      </div>
+                    </div>
+                  </li>
+             {% endfor %}
+    
+    
+             <div class="pagination">
+                    <span class="step-links">
+                        {% if pmaterial.has_previous %}
+                            <a href="?page={{ slider.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ pmaterial.number }} of {{ pmaterial.paginator.num_pages }}.
+                        </span>
+                
+                        {% if pmaterial.has_next %}
+                            <a href="?page={{ slider.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+    
+    
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    <!-- =================================================================== javscript -->
+    
+    
+{% endblock konten %}

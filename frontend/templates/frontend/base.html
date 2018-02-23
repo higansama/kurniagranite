@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'frontend/css' %}/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="{% static 'frontend/css' %}/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<style>
+  .jarakbawah{
+    padding-bottom: 5%;
+  }
+</style>
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <nav class="light-blue lighten-1">
+        <div class="container">
+            <a id="logo-container" href="{% url 'frontend:beranda' %}" class="brand-logo">Kurniagranite</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a href="{% url 'frontend:allmaterial' %}">Material</a>
+              </li>
+              <li>
+                <a href="{% url 'frontend:artwork' %}">Art Works</a>
+              </li>
+              <li>
+                <a class="dropdown-button" data-activates="dropdowns" data-beloworigin="true">Categories</a>
+                <ul id="dropdowns" class="dropdown-content collection">
+                  <li style="width:100%;">
+                    {% for i in kategori %}
+                    <a href="{% url 'frontend:fkategori' i.slug %}">{{ i.namakategori }}</a>
+                    {% endfor %}
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">How To Order</a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="large material-icons ">shopping_cart</i>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="large material-icons ">person</i>
+                </a>
+              </li>
+            </ul>
+        </div>
+        </div>
+        
+    </nav>
+    </div>
+    <!-- Move the sidenav outside of .navbar-fixed -->
+    <ul class="side-nav" id="mobile-demo">
+      <li>
+        <a href="{% url 'frontend:allmaterial' %}">Material</a>
+      </li>
+      <li>
+        <a href="{% url 'frontend:artwork' %}">Art Works</a>
+      </li>
+      <li>
+        <a class="dropdown-button" data-activates="dropdown1" data-beloworigin="true">Categories</a>
+        <ul id="dropdown1" class="dropdown-content collection">
+          <li style="padding-left:5%;">
+            {% for i in kategori %}
+            <a href="{% url 'frontend:fkategori' i.slug %}">{{ i.namakategori }}</a>
+            {% endfor %}
+          </li>
+        </ul>
+      </li>
+      
+      <li>
+        <a href="#">How To Order</a>
+      </li>
+      <li class="right-align">
+        <p><a href="#">
+            <i class="small material-icons ">shopping_cart</i>
+          </a><a href="#" >
+            <i class="small material-icons ">person</i>
+          </a></p>
+      </li>
+    </ul>
+    <ul id="dropdown" class="dropdown-content collection">
+      <li style="padding-left:5%;">
+        {% for i in kategori %}
+        <a href="{% url 'frontend:fkategori' i.slug %}">{{ i.namakategori }}</a>
+        {% endfor %}
+      </li>
+    </ul>
+  </header>
+  </div>
+  
+
+
+
+  <div class='container'>
+    {% block konten %} {% endblock konten %}
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col m4 l4 s12">&nbsp;</div>
+        <div class="col m1 l1 s3">
+          <a class="btn-floating waves-effect waves-light red " href="#">
+            <img src="{% static 'frontend/image/fb.svg' %}" alt="">
+          </a>
+        </div>
+        <div class="col m1 l1 s3">
+          <a class="btn-floating waves-effect waves-light red " href="#">
+            <img src="{% static 'frontend/image/tw.svg' %}" alt="">
+          </a>
+        </div>
+        <div class="col m1 l1 s3">
+          <a class="btn-floating waves-effect waves-light red " href="#">
+            <img src="{% static 'frontend/image/fb.svg' %}" alt="">
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by
+        <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'frontend/js' %}/materialize.js"></script>
+  <script src="{% static 'frontend/js' %}/init.js"></script>
+  <script>
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      //over: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
+  </script>
+</body>
+
+</html>

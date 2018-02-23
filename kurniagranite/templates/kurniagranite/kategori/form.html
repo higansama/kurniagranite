@@ -1,0 +1,43 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<form id="demo-form1" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{% url 'kategorisimpan' %}">
+    {% csrf_token %}
+    <input type="hidden" name="type" value="{{ type }}">
+    <input type="hidden" name="id" value="{{ data.id }}">
+    <!-- Nama Kategori Start -->
+    <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namaproduk">Nama Kategori <span class="required">*</span>
+            </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" name="namakategori" id="namakategori" required="required" class="form-control col-md-7 col-xs-12" value="{{ data.namakategori }}">
+                </div>
+        </div>
+        <!-- Nama Kategori Stop -->
+        <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right ">
+                    <button type="submit" class="simpan btn-success">
+                            <i class="fa fa-save"></i> Save                        
+                    </button>
+                </div>
+            </div>
+</form>        
+
+<script type="text/javascript">
+    $(function() {
+        $('#namakategori').keyup(function() {
+            if (this.value.match(/[^a-zA-Z0-9 -]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
+            }
+        });
+    });
+</script>
+{% endblock konten %}

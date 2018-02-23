@@ -1,0 +1,98 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form id="demo-form1" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{% url 'simpandataslider' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name='type' value='{{ type }}'>
+    <input type="hidden" name='id' value='{{ data.id }}'>
+    
+    <!-- Judul Slider Start -->
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namaproduk" required>Judul Slider
+            <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" name="judul" id="judulslider" required="required" class="form-control col-md-7 col-xs-12" value="{{ data.judul }}">
+        </div>
+    </div>
+    <!-- Judul Slider Stop -->
+    <!-- Link Slider Start -->
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namaproduk" required>Link Slider
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" name="link" id="link" class="form-control col-md-7 col-xs-12" value="{{ data.link }}">
+        </div>
+    </div>
+    <!-- Link Slider Stop -->
+
+    <!-- Status Slider Start -->
+    <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="showprice">Status
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <select class="select2_single form-control" name="status" >
+                    <option value="1">Aktif</option>
+                    <option value="0">Tidak Aktif</option>
+                </select>
+            </div>
+        </div>
+    <!-- Status Slider Stop -->
+    <!-- Gambar slider Start -->        
+    <div class="form-group">
+        <label for="uploadPreview1" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Slider</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">                       
+            {% if type == "tambah" %}
+                <img id="uploadPreview1"  alt="" width="100%" height="100%"  src="../../../../media/noimage.png">            
+            {% else %}
+                <img id="uploadPreview1"  alt="" width="100%" height="100%"  src="../../../../media/{{ data.gambar }}">                        
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="gambar" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  1</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">                    
+            <input type="file" class="form-control" id="uploadImage1" name="gambar" onchange="PreviewImage(1)">
+        </div>
+    </div>
+    <!-- Gambar slider Stop -->        
+
+    <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12  pull-right">
+                <button type="submit" class="simpan btn-success">
+                    <i class="fa fa-save"></i> Save
+                </button>
+            </div>
+        </div>
+
+        
+</form>
+
+
+<script>
+    function PreviewImage(no) {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage" + no).files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview" + no).src = oFREvent.target.result;
+        };
+        log.console(oFReader);
+    }
+
+    $(function () {
+        $('#judulslider').keyup(function () {
+            if (this.value.match(/[^a-zA-Z0-9 -]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
+            }
+        });
+    });
+</script>
+{% endblock konten %}

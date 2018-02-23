@@ -1,0 +1,26 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+    <a class="btn btn-app">
+        <i class="fa fa-edit"></i> Edit
+    </a>
+    <div class="row">
+        <p align="Left"><h2>{{ data.namamaterial }}</h2></p>
+    </div>
+    <div class="row">
+        <div class="col-md-12 success">
+            <div class="jumbotron">
+                {{ data.deskripsi }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-4"><img src="/media/{{ data.gambar1 }}" alt="" width="50%" height="50%">asdasdasd</div>    
+            <div class="col-md-4"><img src="/media/{{ data.gambar1 }}" alt="" width="50%" height="50%"></div>    
+            <div class="col-md-4"><img src="/media/{{ data.gambar1 }}" alt="" width="50%" height="50%"></div>    
+            <div class="col-md-4"><img src="/media/{{ data.gambar1 }}" alt="" width="50%" height="50%"></div>    
+            <div class="col-md-4"><img src="/media/{{ data.gambar1 }}" alt="" width="50%" height="50%"></div>    
+        
+    </div>
+{% endblock konten %}
+    

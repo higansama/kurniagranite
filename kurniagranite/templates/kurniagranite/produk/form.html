@@ -1,0 +1,292 @@
+{% extends 'kurniagranite/baseoffice.html' %} {% load static %} {% block konten %} {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form id="demo-form1" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{% url 'simpandataproduk' %}" enctype="multipart/form-data">
+    <div class="x_title row">
+        <h2>
+            <i class="fa fa-bars"></i> Tabs
+            <small>Float left</small>
+        </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
+        <div role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Data Produk</a>
+                </li>
+                <li role="presentation" class="">
+                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Material Yang Dipakai</a>
+                </li>
+                <li role="presentation" class="">
+                    <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Data Harga</a>
+                </li>
+            </ul>
+            <!-- Tab Form Data Produk Start -->
+            <div id="myTabContent row" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in " id="tab_content1" aria-labelledby="home-tab">
+                    {% csrf_token %}
+                    <input type="hidden" name="type" value="{{ type }}">
+                    <input type="hidden" name="id" value="{{ data.id }}">
+
+                    <!-- input kategori start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kategori">Kategori
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select name="kategori" id="kategori" required="required" class="form-control col-md-7 col-xs-12">
+                                {% for k in kategori %}
+                                <option value="{{ k.id }}">{{ k.namakategori }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- input kategori stop -->
+
+                    <!-- Nama Product Start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namaproduk">Nama Produk
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="namaproduk" id="namaproduk" required="required" class="form-control col-md-7 col-xs-12" value="{{ data.namaproduct }}">
+                        </div>
+                    </div>
+                    <!-- Nama Product Stop -->
+
+                    <!-- Status Start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="select2_single form-control" name="status">
+                                <option value="0">Tidak Aktif</option>
+                                <option value="1">Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Status Stop -->
+
+                    <!-- Tags Stop -->
+                    <div class="form-group">
+                        <div class="control-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tag Pencarian</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="tags_1" name="tag" type="text" class="tags form-control" value="{{ data.metafield }}" />
+                                <div id="suggestions-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tags Stop -->
+
+                    <!-- Deskripsi Start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Deskripsi
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea name="deskripsi" class="form-control" cols="100" rows="10">{{ data.deskripsi }}</textarea>
+                        </div>
+                    </div>
+                    <!-- Deskripsi Stop -->
+
+                <!-- Gambar 1 Start -->        
+                <div class="form-group">
+                    <label for="uploadPreview1" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 1</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <img id="uploadPreview1"  alt="" width="20%" height="20%"  src="../../../../media/{{ data.gambar1 }}">            
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  1</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <input type="file" class="form-control" id="uploadImage1" name="gambar1" onchange="PreviewImage(1)">
+                    </div>
+                </div>
+                <!-- Gambar 1 Stop -->        
+    
+    
+                <!-- Gambar 2 Start -->        
+                <div class="form-group">
+                    <label for="uploadPreview2" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 2</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                            <img id="uploadPreview2"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar2 }}">            
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gambar2" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  2</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <input type="file" class="form-control" id="uploadImage2" name="gambar2" onchange="PreviewImage(2)">
+                    </div>
+                </div>
+                <!-- Gambar 2 Stop -->        
+    
+            <!-- Gambar 3 Start -->        
+                <div class="form-group">
+                    <label for="uploadPreview3" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 3</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <img id="uploadPreview3"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar3 }}">            
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gambar3" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  3</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <input type="file" class="form-control" id="uploadImage3" name="gambar3" onchange="PreviewImage(3)">
+                    </div>
+                </div>
+            <!-- Gambar 3 Stop -->        
+    
+            <!-- Gambar 4 Start -->        
+                <div class="form-group">
+                    <label for="uploadPreview4" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 4</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <img id="uploadPreview4"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar4 }}">            
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gambar4" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  4</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <input type="file" class="form-control" id="uploadImage4" name="gambar4" onchange="PreviewImage(4)">
+                    </div>
+                </div>
+            <!-- Gambar 4 Stop -->        
+    
+            <!-- Gambar 5 Start -->        
+                <div class="form-group">
+                    <label for="uploadPreview5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>                
+                    <div class="col-md-6 col-sm-6 col-xs-12">                                            
+                        <img id="uploadPreview5"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar5 }}">            
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gambar5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">                    
+                        <input type="file" class="form-control" id="uploadImage5" name="gambar5" onchange="PreviewImage(5)">
+                    </div>
+                </div>
+            <!-- Gambar 5 Stop -->        
+    
+                </div>
+                <!-- Tab Form Data Produk Stop -->
+
+
+                <!-- Tab Form Data Material Yang Digunakan -->
+                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                    {% for m in material %}
+                    <div class="form-group">
+                        <div class="control-group col-md-2 col-xs-2 col-lg-2">
+                            <label>
+                                <input name='usedmaterial' type="checkbox" value="{{ m.slug }}"> {{m.namamaterial}}
+                            </label>
+                        </div>
+
+                        <div class="col-md-2 col-xs-2 col-lg-2">
+                            <img src="../../../../media/{{ m.gambar1 }}" alt="" width="150px" height="150px" id="material{{ m.id }}">
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-lg-2">
+                            <img src="../../../../media/{{ m.gambar2 }}" alt="" width="150px" height="150px">
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-lg-2">
+                            <img src="../../../../media/{{ m.gambar3 }}" alt="" width="150px" height="150px">
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-lg-2">
+                            <img src="../../../../media/{{ m.gambar4 }}" alt="" width="150px" height="150px">
+                        </div>
+                        <div class="col-md-2 col-xs-2 col-lg-2">
+                            <img src="../../../../media/{{ m.gambar5 }}" alt="" width="150px" height="150px">
+                        </div>
+
+
+                    </div>
+                    <hr style="border-bottom:2px"> {% endfor %}
+
+                </div>
+                
+                <!-- Tab Form Data Material Yang Digunakan Stop-->
+
+
+
+                <!-- Tab Form Data Harga -->
+                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                    <!-- Harga Product Start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hargaproduk">Harga Produk
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" name="hargaproduk" id="hargaproduk" required="required" class="form-control col-md-7 col-xs-12" value="{{ data.namaproduct }}"> *gunakan
+                            <<code>sup</code>> ukuran
+                                <<code>/sup</code>> untuk menghasilkan m
+                                    <sup>2</sup>
+                        </div>
+                    </div>
+                    <!-- Harga Product Stop -->
+
+                    <!-- Show Harga Product Start -->
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="showprice">Show Price
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="select2_single form-control" name="showprice" id="showprice">
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Show Harga Product Show -->
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12  ">
+                            <button type="submit" class="simpan btn-success">
+                                <i class="fa fa-save "></i> Save
+                            </button>
+                        </div>
+                    </div>
+
+</form>
+<!-- Tab Form Data Harga -->
+
+</div>
+</div>
+
+</div>
+
+</form>
+
+
+
+
+
+
+
+
+<script>
+    function PreviewImage(no) {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage" + no).files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview" + no).src = oFREvent.target.result;
+        };
+        log.console(oFReader);
+    }
+
+    $(function () {
+        $('#namaproduk').keyup(function () {
+            if (this.value.match(/[^a-zA-Z0-9 -]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
+            }
+        });
+    });
+</script>
+{% endblock %}

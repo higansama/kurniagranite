@@ -1,0 +1,47 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="container">
+    <div class="x_panel">
+        <div class="x_title">
+          <h2><small></small></h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+            <div class="profile_img">
+              <div id="crop-avatar">
+                <!-- Current avatar -->
+                <img class="img-responsive avatar-view" src="../../media/{{ pengguna.poto }}" alt="Avatar" title="Change the avatar">
+              </div>
+            </div>
+            {% if pengguna.nama_user == 'Belum Diisi' %}
+                <h5 style="font-color:red">Belum Diisi <br><sup>*segera ganti Nama Anda</sup></h5>
+            {% else %}
+                <h3><center>{{ pengguna.nama_user }}</center></h3>
+            {% endif %}
+            {% if pengguna.no_hp == 'Belum Diisi' %}
+                <h5><a><i class="fa fa-phone-square"></i> Belum Diisi <sup>*segera isi nomer hp anda</sup> </a></h5>                
+            {% else %}
+                <h5><a><i class="fa fa-phone-square"></i> {{pengguna.no_hp}}</a></h5>            
+            {% endif %}
+   
+            <a href="{% url 'profileubah' %}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+            <br>
+
+          </div>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock konten %}

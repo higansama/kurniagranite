@@ -1,0 +1,154 @@
+{% if type != 'tambah' %}
+<!-- Gambar 1 Start -->        
+<div class="form-group">
+    <label for="uploadPreview1" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 1</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <img id="uploadPreview1"  alt="" width="20%" height="20%"  src="../../../../media/{{ data.gambar1 }}">            
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  1</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <input type="file" class="form-control" id="uploadImage1" name="gambar1" onchange="PreviewImage(1)">
+    </div>
+    </div>
+    <!-- Gambar 1 Stop -->        
+    
+    
+    <!-- Gambar 2 Start -->        
+    <div class="form-group">
+    <label for="uploadPreview2" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 2</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <img id="uploadPreview2"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar2 }}">            
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="gambar2" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  2</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <input type="file" class="form-control" id="uploadImage2" name="gambar2" onchange="PreviewImage(2)">
+    </div>
+    </div>
+    <!-- Gambar 2 Stop -->        
+    
+    <!-- Gambar 3 Start -->        
+    <div class="form-group">
+    <label for="uploadPreview3" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 3</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <img id="uploadPreview3"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar3 }}">            
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="gambar3" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  3</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <input type="file" class="form-control" id="uploadImage3" name="gambar3" onchange="PreviewImage(3)">
+    </div>
+    </div>
+    <!-- Gambar 3 Stop -->        
+    
+    <!-- Gambar 4 Start -->        
+    <div class="form-group">
+    <label for="uploadPreview4" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 4</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <img id="uploadPreview4"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar4 }}">            
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="gambar4" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  4</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <input type="file" class="form-control" id="uploadImage4" name="gambar4" onchange="PreviewImage(4)">
+    </div>
+    </div>
+    <!-- Gambar 4 Stop -->        
+    
+    <!-- Gambar 5 Start -->        
+    <div class="form-group">
+    <label for="uploadPreview5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>                
+    <div class="col-md-6 col-sm-6 col-xs-12">                                            
+    <img id="uploadPreview5"  alt="" width="20%" height="20%" src="../../../../media/{{ data.gambar5 }}">            
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="gambar5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">                    
+    <input type="file" class="form-control" id="uploadImage5" name="gambar5" onchange="PreviewImage(5)">
+    </div>
+    </div>
+    <!-- Gambar 5 Stop -->        
+    {% else %}
+<!-- Gambar 1 Start -->        
+<div class="form-group">
+   <label for="uploadPreview1" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 1</label>
+   <div class="col-md-6 col-sm-6 col-xs-12">                    
+   <img id="uploadPreview1"  alt="" width="20%" height="20%"  src="../../../../media/noimage.png">            
+   </div>
+</div>
+<div class="form-group">
+<label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  1</label>
+<div class="col-md-6 col-sm-6 col-xs-12">                    
+   <input type="file" class="form-control" id="uploadImage1" name="gambar1" onchange="PreviewImage(1)">
+</div>
+</div>
+<!-- Gambar 1 Stop -->        
+
+
+<!-- Gambar 2 Start -->        
+<div class="form-group">
+   <label for="uploadPreview2" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 2</label>
+   <div class="col-md-6 col-sm-6 col-xs-12">                    
+   <img id="uploadPreview2"  alt="" width="20%" height="20%" src="../../../../media/noimage.png">            
+   </div>
+</div>
+<div class="form-group">
+<label for="gambar2" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  2</label>
+<div class="col-md-6 col-sm-6 col-xs-12">                    
+   <input type="file" class="form-control" id="uploadImage2" name="gambar2" onchange="PreviewImage(2)">
+</div>
+</div>
+<!-- Gambar 2 Stop -->        
+
+<!-- Gambar 3 Start -->        
+<div class="form-group">
+   <label for="uploadPreview3" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 3</label>
+   <div class="col-md-6 col-sm-6 col-xs-12">                    
+   <img id="uploadPreview3"  alt="" width="20%" height="20%" src="../../../../media/noimage.png">            
+   </div>
+</div>
+<div class="form-group">
+<label for="gambar3" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  3</label>
+<div class="col-md-6 col-sm-6 col-xs-12">                    
+   <input type="file" class="form-control" id="uploadImage3" name="gambar3" onchange="PreviewImage(3)">
+</div>
+</div>
+<!-- Gambar 3 Stop -->        
+
+<!-- Gambar 4 Start -->        
+<div class="form-group">
+   <label for="uploadPreview4" class="control-label col-md-3 col-sm-3 col-xs-12">Preview Gambar 4</label>
+   <div class="col-md-6 col-sm-6 col-xs-12">                    
+   <img id="uploadPreview4"  alt="" width="20%" height="20%" src="../../../../media/noimage.png">            
+   </div>
+</div>
+<div class="form-group">
+<label for="gambar4" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  4</label>
+<div class="col-md-6 col-sm-6 col-xs-12">                    
+   <input type="file" class="form-control" id="uploadImage4" name="gambar4" onchange="PreviewImage(4)">
+</div>
+</div>
+<!-- Gambar 4 Stop -->        
+
+<!-- Gambar 5 Start -->        
+<div class="form-group">
+<label for="uploadPreview5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>                
+<div class="col-md-6 col-sm-6 col-xs-12">                                            
+   <img id="uploadPreview5"  alt="" width="20%" height="20%" src="../../../../media/noimage.png">            
+</div>
+</div>
+<div class="form-group">
+<label for="gambar5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>
+<div class="col-md-6 col-sm-6 col-xs-12">                    
+   <input type="file" class="form-control" id="uploadImage5" src="../../../../media/noimage.png">
+</div>
+</div>
+<!-- Gambar 5 Stop -->      
+{% endif %}
+

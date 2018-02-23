@@ -1,0 +1,152 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+{% block konten %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message|safe }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+
+
+<p align="right">
+  <a class="btn btn-app" href="{% url 'produktambah' %}">
+      <i class="fa fa-plus-square-o"></i>
+          Tambah Data
+      </a>
+  </p>
+    <h2></h2><br>
+
+    <p>
+            Data Keseluruhan : {{ seluruhdata }}
+        <br>
+        Data Aktif : {{ dataaktif }}
+        <br>
+        Data Tidak Aktif : {{ nonaktif }}
+       </p>
+ <div class="x_panel">
+    <div class="x_title">
+      <h2>Data Produk</h2>
+      <ul class="nav navbar-right panel_toolbox">
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div class="dashboard-widget-content">
+
+        <ul class="list-unstyled timeline widget">
+         {% for i in pmaterial %}
+         <li>
+                <div class="block">
+                  <div class="block_content">
+
+                    {{ i.kategori }}
+                    <h2 class="title">
+                                      <a>{{ i.namamaterial }}</a>
+                                  </h2>
+                    <div class="byline">
+                      <span>{{ i.date_created }}</span> by <a> {{ i.created_by }}</a>
+                    </div>
+                    <p class="excerpt">
+                        <div class="container">
+                            <div class="col-md-2 col-l-2 col-s-2">
+                                <img src="../../../media/{{ i.gambar1 }}" alt="" width="90%" height="90%">
+                            </div>
+                            <div class="col-md-2 col-l-2 col-s-2">
+                                <img src="../../../media/{{ i.gambar2 }}" alt="" width="90%" height="90%">
+                            </div>
+                            <div class="col-md-2 col-l-2 col-s-2">
+                                <img src="../../../media/{{ i.gambar3 }}" alt="" width="90%" height="90%">                                    
+                            </div>
+                            <div class="col-md-2 col-l-2 col-s-2">
+                                <img src="../../../media/{{ i.gambar4 }}" alt="" width="90%" height="90%">                                    
+                            </div>
+                            <div class="col-md-2 col-l-2 col-s-2">
+                                <img src="../../../media/{{ i.gambar5 }}" alt="" width="90%" height="90%">                                    
+                            </div>
+                        </div>
+                        <br>
+                        {{ i.deskripsi|safe|slice:":255"  }}<a>Read&nbsp;More</a>
+                   
+                    <br>
+                    <br>
+                    <a class="btn btn-app" href="{% url 'materialrubah' i.id %}">
+                        <i class="fa fa-edit" style="color:aqua"></i>
+                        Edit Data
+                    </a>
+                            &nbsp;
+                    {% if i.is_active == "1" %}
+                    <a class="btn btn-app" href="../aktifasi/{{i.slug}}/{{i.is_active}}">                                                
+                        <i class="fa fa-check-square-o"></i>
+                        Aktif
+                    </a>
+                    {% else %}
+                    <a class="btn btn-app" href="../aktifasi/{{i.slug}}/{{i.is_active}}">                                                                        
+                        <i class="fa fa-square"></i>
+                        Tidak Aktif
+                    </a>
+                    {% endif %}
+                    <a href="../{% url 'produkhapus'  i.slug %}" class="btn btn-app">
+                        <i class="fa fa-minus-square-o"></i>
+                        Hapus
+                    </a>
+                        </p>
+                  </div>
+                </div>
+              </li>
+         {% endfor %}
+
+
+         <div class="pagination">
+                <span class="step-links">
+                    {% if pmaterial.has_previous %}
+                        <a href="?page={{ pmaterial.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ pmaterial.number }} of {{ pmaterial.paginator.num_pages }}.
+                    </span>
+            
+                    {% if pmaterial.has_next %}
+                        <a href="?page={{ pmaterial.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+
+
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- =================================================================== javscript -->
+{% csrf_token %}
+<script>
+    
+    {% comment %} function aktifasi(id ,is_active){
+        var id = id = id ;
+        var is_active = is_active;  
+        var data = {
+            'id':id,
+            'is_active':is_active
+        }
+        $.ajax({
+            type: 'POST',
+            data :data,
+            url: "{% url 'aktifasimaterial' %}",            
+            dataType: 'json',
+            timeout: 10000,
+            async: true,
+            cache: false,  
+            success: function(){
+                alert("Sukses")
+            }
+        });
+    } {% endcomment %}
+</script>
+{% endblock konten %}
+
+ 

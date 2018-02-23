@@ -1,0 +1,119 @@
+{% extends 'kurniagranite/baseoffice.html' %}
+{% load static %}
+
+{% block konten %}
+<style>
+textarea {
+    resize: none;
+    }
+</style>
+<h3>Helo</h3>
+<div class="row">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {{ pesan }}
+        {% if pesan == "" %}
+        <div class="x_content bs-example-popovers">
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <strong>Data Gagal Disimpan</strong> Data Sudah ada dengan Nomer ID : <strong>{{ data.id }}</strong>
+            </div>   
+        </div>
+        {% endif %}
+
+    <form id="demo-form1" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{% url 'materialprosestambah' %}" enctype="multipart/form-data">                
+        {% csrf_token %}
+        <input type="hidden" name="type" required="required" value="{{ type }}">        
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="namamaterial">Nama Material <span class="required">*</span>
+            </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" name="namamaterial" id="namamaterial" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+        </div>
+        
+        <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select class="select2_single form-control" name="status">
+                          <option value="0">Tidak Aktif</option>
+                          <option value="1">Aktif</option>
+                      </select>
+                  </div>
+              </div>
+
+              <div class="form-group">
+            <div class="control-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tag Pencarian</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">                    
+                  <input id="tags_1" name="tag" type="text" class="tags form-control" />
+                  <div id="suggestions-container" ></div>
+                </div>
+              </div>
+        </div>
+              
+        <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Deskripsi <span class="required">*</span>
+                </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea name="deskripsi" class="form-control" placeholder="Deskripsi singkat tentang product ini, bisa juga diisi keterangan tentang ketersediaan barang..." cols="100" rows="10"></textarea>
+                    </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  1</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">                    
+                <input type="file" class="form-control" id="gambar1" name="gambar1">
+            </div>
+        </div>
+
+        <div class="form-group">
+                <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  2</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">                    
+                    <input type="file" class="form-control" id="gambar2" name="gambar2">
+                </div>
+        </div>
+
+        <div class="form-group">
+                <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  3</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">                    
+                    <input type="file" class="form-control" id="gambar3" name="gambar3">
+                </div>
+        </div>
+
+        <div class="form-group">
+                <label for="gambar1" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  4</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">                    
+                    <input type="file" class="form-control" id="gambar4" name="gambar4">
+                </div>
+        </div>
+
+        <div class="form-group">
+                <label for="gambar5" class="control-label col-md-3 col-sm-3 col-xs-12"> Gambar  5</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">                    
+                    <input type="file" class="form-control" id="gambar5" name="gambar5">
+                </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right ">
+                <button type="submit" class="simpan">
+                        <i class="fa fa-save"></i> Save                        
+                </button>
+            </div>
+        </div>
+
+                        
+    </form>
+</div>
+
+{% endblock konten %}
+
+
+    

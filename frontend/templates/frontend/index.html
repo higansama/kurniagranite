@@ -1,0 +1,81 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block konten %}
+  
+
+<section id="product">
+
+  <div class="row">
+    {% for p in produk %}  
+    <!-- <div class="col xs1">&nbps;</div> -->
+    
+    <div class="col l3 m3 s12 push-s1">
+      <div class="card">
+        <div class="card-image artwork">
+          {% if gambar1.produk != 'media/noimage.png' %}
+          {% if lokasi != "bk" %}
+            <img src="../media/{{p.gambar1}}" class="responsive-img">
+          {% else %}
+            <img src="../../media/{{p.gambar1}}" class="responsive-img">
+          {% endif %}
+          {% else %}
+          
+          {% endif %}
+          <span class="card-title">
+            <font color='black'>
+              {{ p.namaproduct }}
+            </font>
+          </span>
+        </div>
+        <div class="card-content"> 
+          <a href="{% url 'frontend:detailproduct' p.slug %}">Detail</a>
+        </div>
+        <div class="card-action">
+          <a class="left-align btn-floating waves-effect waves-light red " href="#">
+            <img src="{% static 'frontend/image/fb.svg' %}" alt="">
+          </a>
+          <a class="left-align  btn-floating waves-effect waves-light red " href="#">
+            <img src="{% static 'frontend/image/tw.svg' %}" alt="">
+          </a>
+          <a class="btn-floating waves-effect waves-light red right" href="#">
+            <i class="align-right material-icons">add_shopping_cart</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}     
+  </div>
+<a class="flow-text blue-text text-lighten-3" href="{% url 'frontend:artwork' %}"><h4 class="flow-text">Look More At Artwork . . .</h4> </a>  
+               
+</section>
+<hr>
+
+<br>
+
+<section class="material "> 
+    <!-- <h1 class="center-align teal-text flow-text center-align" style="font-size:500%;">Material</h1>    -->
+    <div class="row">
+        {% for i in material %}
+        {% if i.is_active == '1' %}        
+        <div class="col l3 m3 s6" >
+            <center>
+                <label for="{{ i.slug }}">
+                  <a href="{% url 'frontend:detailmaterial' i.slug %}">
+                      <font color="#827717">{{ i.namamaterial }}</font>
+                  </a>
+                </label>
+            </center>
+            <img id="{{i.slug}}" class="materialboxed lite-product jarakbawah responsive-img" data-caption="{{i.deskripsi|safe}} " src="../media/{{i.gambar1}}">
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <a class="flow-text blue-text text-lighten-3" href="{% url 'frontend:allmaterial' %}"><h4 class="flow-text">Look More At Material . . .</h4> </a>  
+  <hr>
+
+</section>
+
+
+{% endblock konten %}
+  
